@@ -13,7 +13,7 @@ availability_zones   = ["us-east-1a", "us-east-1b"]
 public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
 private_subnet_cidrs = ["10.0.11.0/24", "10.0.12.0/24"]
 enable_nat_gateway   = true
-single_nat_gateway   = false
+single_nat_gateway   = true
 enable_dns_hostnames = true
 enable_dns_support   = true
 
@@ -40,8 +40,8 @@ allowed_ssh_ips = ["0.0.0.0/0"]  # Replace with your IP for production
 # Add your IAM user ARN here (get it with: aws sts get-caller-identity)
 additional_iam_users = [
   {
-    userarn  = "arn:aws:iam::742674388365:user/cli-user"  # REPLACE THIS
-    username = "cli-user"
+    userarn  = "arn:aws:iam::944443936932:user/terraform"  # REPLACE THIS
+    username = "terraform"
     groups   = ["system:masters"]
   }
 ]
@@ -49,11 +49,11 @@ additional_iam_users = [
 # If you use IAM roles (SSO, assumed roles), add them here
 additional_iam_roles = [
   # Uncomment and modify if needed:
-  # {
-  #   rolearn  = "arn:aws:iam::123456789012:role/YourRoleName"
-  #   username = "admin-role"
-  #   groups   = ["system:masters"]
-  # }
+  {
+    rolearn  = "arn:aws:iam::944443936932:role/jenkins-role"
+    username = "jenkins-role"
+    groups   = ["system:masters"]
+  }
 ]
 
 # ============================================================================
