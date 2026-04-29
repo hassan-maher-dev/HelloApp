@@ -11,7 +11,7 @@ pipeline {
 
                 echo "🔹 Checking out repository..."
 
-                git branch: 'main', url: 'https://github.com/mohamed55979/HelloApp'
+                git branch: 'main', url: 'https://github.com/hassan-maher-dev/HelloApp.git'
 
             }
 
@@ -73,8 +73,8 @@ pipeline {
 
         }
 
-   }
-*/ 
+*/ }
+ 
     post {
 
         success {
@@ -90,5 +90,4 @@ pipeline {
         }
 
     }
-
 }
