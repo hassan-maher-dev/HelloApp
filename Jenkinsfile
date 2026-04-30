@@ -9,7 +9,7 @@ pipeline {
 
             steps {
 
-                echo "🔹 Checking out repository..."
+                echo " Checking out repository..."
 
                 git branch: 'main', url: 'https://github.com/hassan-maher-dev/HelloApp.git'
 
@@ -21,7 +21,7 @@ pipeline {
 
             steps {
 
-                echo "🔹 Initializing Terraform..."
+                echo " Initializing Terraform..."
 
                 sh 'terraform init -reconfigure'
 
@@ -33,7 +33,7 @@ pipeline {
 
             steps {
 
-                echo "🔹 Creating Terraform plan..."
+                echo " Creating Terraform plan..."
 
                 sh 'terraform plan -out=tfplan'
 
@@ -47,11 +47,11 @@ pipeline {
 
             steps {
 
-                echo "🔹 Applying Terraform..."
+                echo " Applying Terraform..."
 
                 sh 'terraform apply -auto-approve tfplan'
 
-                echo "✅ Infrastructure deployed successfully!"
+                echo " Infrastructure deployed successfully!"
 
             }
 
@@ -63,11 +63,11 @@ pipeline {
 
             steps {
 
-                echo "🗑️ Destroying Terraform infrastructure..."
+                echo " Destroying Terraform infrastructure..."
 
                 sh 'terraform destroy -auto-approve'
 
-                echo "🔥 Infrastructure destroyed successfully!"
+                echo " Infrastructure destroyed successfully!"
 
             }
 
@@ -77,15 +77,21 @@ pipeline {
  
     post {
 
+        always {
+            // هذا الأمر سيعمل دائماً في النهاية لتنظيف المساحة 
+            echo " Cleaning up workspace to save disk space..."
+            deleteDir() 
+        }
+
         success {
 
-            echo "🎉 Pipeline completed successfully!"
+            echo " Pipeline completed successfully!"
 
         }
 
         failure {
 
-            echo "❌ Pipeline failed!"
+            echo " Pipeline failed!"
 
         }
 
